@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <script type="text/javascript">
+    const objectMap = new Map();
+    objectMap.set("un string", "valor de un string");
+    const myObj = {};
+    objectMap.set(myObj, "valor asociado a un objeto");
+    objectMap.set(14, "Valor asociado a un número");
+
+    for ([key, value] of objectMap) {
+      console.log(key, value);
+    }
+
+    const extraerValue = objectMap.get(14);
+    console.log("extracción:", extraerValue);
+
+    function crearSaludo(saludo) {
+      return function (nombre) {
+        console.log(`${saludo} ${nombre}`);
+      };
+    }
+
+    let saludoJose = crearSaludo("Hola");
+    saludoJose("José");
+
+    let saludoMañana = crearSaludo("Buenos días");
+    let saludoTarde = crearSaludo("Buenas tardes");
+
+    saludoMañana("José");
+    saludoTarde("José");
+
+    class Person {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      sayHello() {
+        console.log(`Hola, me llamo ${this.name} y tengo ${this.age} años`);
+      }
+    }
+
+    class Trabajador extends Person {
+      constructor(name, age, job) {
+        super(name, age);
+        this.job = job;
+      }
+      welcome() {
+        super.sayHello();
+        console.log(`y trabajo como ${this.job}`);
+      }
+    }
+
+    const jose = new Trabajador("José", 30, "programador");
+
+    jose.welcome();
+
+    //recibir valor por el prompt
+
+    function getNumber() {
+      //obtenet valor por el prompt
+      let input = prompt("Altura: ");
+
+      //convertir a número
+      let altura = Number(input);
+
+      return altura;
+    }
+
+    let altura = getNumber();
+
+    // verificar que sea un número entre 1 y 8
+    if (altura < 1 || altura > 8) {
+      alert("Altura no válida");
+    } else {
+      console.log("Altura válida");
+      //imprimir por consola una piramide del tamaño de la altura
+      function print(altura) {
+        for (let i = 0; i < altura; i++) {
+          let linea = "";
+          for (let j = 0; j < i + 1; j++) {
+            linea += "#";
+          }
+          console.log(linea);
+        }
+      }
+      print(altura);
+    }
+  </script>
+  <body></body>
+</html>
